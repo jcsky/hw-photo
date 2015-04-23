@@ -6,4 +6,12 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  # def require_login
+  #   unless current_user
+  #     flash[:alert] = "Login Required"
+  #     redirect_to root_path
+  #     return
+  #   end
+  # end
+
 end

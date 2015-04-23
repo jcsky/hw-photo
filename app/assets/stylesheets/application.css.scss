@@ -1,4 +1,19 @@
-@import "bootstrap"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+.wrapper{
+  width: 100%;
+}
+.p{
+  margin:0px auto;
+  border:1px solid #333;
+  margin-bottom:20px;
+}
+.p img{
+  height: 450px;
+  width: 800px;
+  margin:0px auto;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
