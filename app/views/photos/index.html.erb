@@ -1,21 +1,23 @@
-
-
-<%= form_for @photo, :url => photos_path, :html => { :multipart => true } do |form| %>
-  <%= form.file_field :photo %> <br>
-  <%= form.text_area "description" %> <br>
-  <%= form.submit "submit", :class =>"btn btn-primary" %>
+<div class="wrapper">
+<% if current_user %>
+  <%= form_for @photo, :url => photos_path, :html => { :multipart => true } do |form| %>
+    <%= form.file_field :photo %> <br>
+    <%= form.text_area "description" %> <br>
+    <%= form.submit "submit", :class =>"btn btn-primary" %>
+  <% end %>
 <% end %>
 
 
 
 
-
 <!-- 列出所有photo依updated_at排序 -->
-<div class="wrapper">
+
   <% @photos.each do |p| %>
     <div class="p">
+      <%= p.user.name %>
       <%= image_tag( p.photo(:original) ) %>
 
+      <%= link_to "刪除", photo_path(p), :method => :delete, :class => "btn btn-danger" %>
       <h3><%= p.description %></h3>
     </div>
   <% end %>
