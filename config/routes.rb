@@ -7,7 +7,9 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :photos
+  resources :photos do
+    resources :likes
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.

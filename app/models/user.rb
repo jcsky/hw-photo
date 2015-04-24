@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :photos
 
+  has_many :likes
+  has_many :like_photos, :through =>:likes, :source => "photo"
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]

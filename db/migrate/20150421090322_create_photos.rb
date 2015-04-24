@@ -7,8 +7,10 @@ class CreatePhotos < ActiveRecord::Migration
       t.string   :photo_content_type
       t.integer  :photo_file_size
       t.datetime :photo_updated_at
+
       t.timestamps null: false
     end
+
     add_index :photos, :user_id
   end
 end
