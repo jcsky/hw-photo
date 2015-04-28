@@ -1,0 +1,4 @@
+<% photo.comments.order("updated_at DESC").each do |comment| %>
+  <h4 id="comment-<%= comment.id %> " class="comment"><%= comment.content %></h4>
+  <%= link_to "X", photo_comment_path(photo, comment), :method => :delete, :remote => true, :class => "btn btn-danger" %>
+<% end %>

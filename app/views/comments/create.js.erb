@@ -1,0 +1,2 @@
+$('#photo-comment-<%= @comment.photo.id %>')
+.prepend("<h4 id=\"comment-<%= @comment.id %>\" class=\"comment\"><%= @comment.content %></h4><%= j link_to 'X', photo_comment_path(@comment.photo, @comment), :method => :delete, :remote => true, :class => 'btn btn-danger' %>")

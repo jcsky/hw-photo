@@ -1,4 +1,4 @@
-<div class="wrapper">
+
 <% if current_user %>
   <%= form_for @photo, :url => photos_path, :html => { :multipart => true } do |form| %>
     <%= form.file_field :photo %> <br>
@@ -8,21 +8,32 @@
 <% end %>
 
 
-
-
 <!-- 列出所有photo依updated_at排序 -->
 
-  <% @photos.each do |photo| %>
-    <div class="p">
-      Created by: <%= photo.user.name %> <br>
-      <%= image_tag( photo.photo(:original) ) %>
-      <%= link_to "刪除", photo_path(photo), :method => :delete, :class => "btn btn-danger" %>
+<% @photos.each do |photo| %>
+  <div class="p">
+    Created by: <%= photo.user.name %> <br>
+    <%= image_tag( photo.photo(:original) ) %>
+    <%= link_to "刪除", photo_path(photo), :method => :delete, :class => "btn btn-danger" %>
 
-      <div id="photo-like-<%= photo.id %>">
+    <%= link_to "訂閱", photo_path(photo), :method => :delete, :class => "btn btn-danger" %>
+
+    <div id="photo-like-<%= photo.id %>">
       <%= render :partial => "likes/show", :locals => { :photo => photo } %>
-      </div>
-
-      <h3><%= photo.description %></h3>
     </div>
-  <% end %>
-</div>
+
+    <h3>Description: <%= photo.description %></h3>
+
+
+    <%= form_for Comment.new, :url => photo_comments_path(photo), :remote => true  do |f| %>
+      <%= f.text_area :content, :placeholder => "回覆.." %>
+      <%= f.submit "submit", :class =>"btn btn-primary" %>
+    <% end %>
+
+    <div id="photo-comment-<%= photo.id %>">
+      <%= render :partial => "comments/show", :locals => { :photo => photo } %>
+    </div>
+
+
+  </div>
+<% end %>
